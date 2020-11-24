@@ -84,7 +84,6 @@ export default {
     }
   },
   methods: {
-
     changeTab (int) {
       if (int === this.cateType) {
         this.cateType = 0;

@@ -41,10 +41,12 @@
               </li>
                 <div  @click="goVideo(index)" @mousemove="isShow=true" @mouseout="isShow=false" v-for="(item, index) in uploadList"  :key="index + 'ls'">
                   <li class="img">
-                    <!-- <p v-show="isShow">鼠标移入移出</p> -->
-                    <div class="el-icon-circle-close"></div>
+                  
                 <div class="tip">{{item.tip}}</div>
-                <div class="progress"><div class="entity" :style="{width: item.jd + '%'}"></div></div>
+                <div class="progress"><div class="entity" :style="{width: item.jd + '%'}"></div>
+                  <!-- <p v-show="isShow">鼠标移入移出</p> -->
+                    <div v-show="isShow " @click="deleteIcon(index)" class="el-icon-circle-close"></div>
+                </div>
                 <img :src="item.wait" alt="">
                 <a href="javascript:">{{item.name}}+{{index}}</a>
               </li>
@@ -100,10 +102,14 @@ export default {
     }
   },
   methods: {
+    // 删除当前选中视频
+    deleteIcon(index){
+     this.uploadList.splice(index,1)
+    },
     // 根据下标跳转至视频地址
     goVideo(index){
-      let url=`http://dev52.hbck.com.cn:97/home/roncoo/file/video/${this.videoId}.${this.uploadList[index].name.split('.')[1]}`
-     window.location.href = url
+    //   let url=`http://dev52.hbck.com.cn:97/home/roncoo/file/video/${this.videoId}.${this.uploadList[index].name.split('.')[1]}`
+    //  window.location.href = url
     },
     // 选择上传视频
     upimg () {
@@ -333,8 +339,10 @@ export default {
   margin-left: -360px;
 }
 .el-icon-circle-close{
-  width: 30px;
-  height: 30px;
+  right: 0px;
+  top: 0px;
+  position: absolute;
+
 }
 
 .image_panel{
@@ -443,6 +451,7 @@ export default {
       z-index: 9;
       height: 80px;
       .entity{
+        position: relative;
         height: 100%;
         // background-color: rgba(0, 204, 0, 0.59);
       }
