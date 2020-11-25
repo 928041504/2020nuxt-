@@ -39,8 +39,8 @@ module.exports = {
   */
   css: [
     '@/assets/css/main.scss',
-    'element-ui/lib/theme-chalk/index.css'
-  
+    'element-ui/lib/theme-chalk/index.css',
+    'video.js/dist/video-js.css'
   ],
 
   /*
@@ -53,7 +53,10 @@ module.exports = {
       {
         src: '~plugins/ElementUI',
         ssr: true,
-      }
+      },
+      {
+        src: '~/plugins/vue-video.js',     
+        ssr: true }
   ],
 
   /*
